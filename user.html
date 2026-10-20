@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profiles(JSON Lab)</title>
+    <style>
+        .user-card{ border:1px solid #666; padding:14px; margin:10px 0; max-width:650px; }
+    </style>
+</head>
+<body>
+    <h1>User Profiles from JSON File</h1>
+    <div id="userContainer"></div>
+
+    <script>
+        // Fetch user profile json data
+        fetch('./userProfiles.json')
+        .then(response => {
+            if (!response.ok)
+                throw new Error('Fetch error: ' + response.status)
+            else
+                return response.json();
+        })
+        .then(json => {
+            const container = document.getElementById("userContainer");
+            // Loop through each user object in the json array
+            json.forEach(user=>{
+                const div = document.createElement("div");
+                div.className="user-card";
+                div.innerHTML = `
+                    <h3>${user.firstName} ${user.lastName}</h3>
+                    <p><strong>Email:</strong> ${user.email}</p>
+                    <p><strong>Date of Birth:</strong> ${user.dateOfBirth}</p>
+                    <h4>Preferences:</h4>
+                    <ul>
+                        <li>Theme: ${user.preferences.theme}</li>
+                        <li>Language: ${user.preferences.language}</li>
+                        <li>Notifications: ${user.preferences.notifications}</li>
+                        <li>Newsletter Subscription: ${user.preferences.subscription?"Subscribed":"Not subscribed"}</li>
+                    </ul>
+                    <h4>Address:</h4>
+                    <p>${user.address.street}, ${user.address.city}, ${user.address.state} ${user.address.zipCode}</p>
+                `;
+                container.appendChild(div);
+            })
+        })
+        .catch(err => console.error('Fetch error: ' + err.message));
+    </script>
+</body>
+</html>
