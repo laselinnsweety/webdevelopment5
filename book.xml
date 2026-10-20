@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<book_catalogue>
+    <book id="b001">
+        <title>Learning Web Development</title>
+        <author>Anna Smith</author>
+        <price>49.99</price>
+    </book>
+    <book id="b002">
+        <title>XML Fundamentals</title>
+        <author>Bob Jones</author>
+        <price>35.50</price>
+    </book>
+    <book id="b003">
+        <title>JavaScript Beginner Guide</title>
+        <author>Clair Brown</author>
+        <price>42.00</price>
+    </book>
+</book_catalogue>
